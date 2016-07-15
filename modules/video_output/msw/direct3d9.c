@@ -462,6 +462,7 @@ static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         int64_t frameNumber = picture->frameNumber;
         //msg_Dbg(vd, "frame %" PRId64 " pts %" PRId64 " time %" PRId64, frameNumber, pts, t);
         fprintf(sys->p_dataLog, "%" PRId64 " %" PRId64 " %" PRId64"\n", frameNumber, pts, t);
+        fflush(sys->p_dataLog);
     }
 
     /* XXX See Prepare() */
@@ -823,7 +824,7 @@ static int Direct3D9Open(vout_display_t *vd, video_format_t *fmt)
 static void Direct3D9Close(vout_display_t *vd)
 {
     vout_display_sys_t *sys = vd->sys;
-
+    
     Direct3D9DestroyResources(vd);
 
     if (sys->d3ddev)

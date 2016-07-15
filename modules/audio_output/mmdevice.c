@@ -158,6 +158,7 @@ static void Play(audio_output_t *aout, block_t *block)
     ULONGLONG t = ((ULONGLONG)tm.dwHighDateTime << 32) | (ULONGLONG)tm.dwLowDateTime;
     fprintf(sys->p_dataLog, "%" PRId64 " %" PRId64 " %" PRId64 " %" PRId64"\n",
             block->i_pos, block->i_pts, block->i_length, t);
+    fflush(sys->p_dataLog);
 
     vlc_FromHR(aout, hr);
 }
